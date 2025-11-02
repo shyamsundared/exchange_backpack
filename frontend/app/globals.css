@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base-background-l1:#14151b;
+  --color-base-background-l0:#0e0f14;
+}
