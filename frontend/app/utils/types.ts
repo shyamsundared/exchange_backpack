@@ -30,7 +30,7 @@ export interface Ticker{
   "volume":string
   "quoteVolume": string
   "trades": string
-}
+} 
 export interface Depth{
   "asks": [string,string][]
   "bids": [string,string][]

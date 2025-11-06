@@ -1,5 +1,5 @@
 import { error } from "console";
-import { Depth, Klines, Ticker } from "./types";
+import { Depth, Klines, Ticker,Trade } from "./types";
 import axios from "axios";
 const Base_URL="https//localhost:3000/api/v1";
 
@@ -16,21 +16,34 @@ export const getTickers= async():Promise<Ticker[]>=>{
     return tickers.data
 }
 export const getDepth= async(market:string):Promise<Depth>=>{
-    const depth = await axios.get<Depth>(`${Base_URL}/depth`,{
+    const response= await axios.get<Depth>(`${Base_URL}/depth`,{
         params:{
             symbol:market
         }
     })
-    return depth.data
+    const depth=response.data
+    return depth
     
 }
-export const klines= async(market:string,startTime:number,interval:string):Promise<Klines>=>{
-    const klines= await axios.get<Klines>(`${Base_URL}/klines`,{
+export const getKlines= async(market:string,startTime:number,interval:string,endTime:number):Promise<Klines[]>=>{
+    const response= await axios.get<Klines[]>(`${Base_URL}/klines`,{
         params:{
             symbol:market,
             interval:interval,
-            startTime:startTime
+            startTime:startTime,
+            endTime:endTime
         }
     })
-    return klines.data
+    const klines=response.data
+    return klines
+    
+}
+export async function getTrades(market: string): Promise<Trade[]> {
+    const response = await axios.get<Trade[]>(`${Base_URL}/trades`,{
+        params:{
+            symbol:market
+        }
+    });
+    const k=response.data
+    return k;
 }

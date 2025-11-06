@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from "react"
 import { Ticker } from "../utils/types"
 import { getTicker } from "../utils/httpClient";
